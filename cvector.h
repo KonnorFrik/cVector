@@ -1,14 +1,13 @@
 /** @file
  * cVector is a container for store pointers to any other objects
- *
- * @defgroup Main User interface
+ */
+
+ /** @defgroup Main
  * Library elements (functions, enums, etc) which user can use by design
- *
- * @defgroup Add-on
+ */
+
+ /** @defgroup Add-on
  * Library elements (functions, enums, etc) which user don't need to use by design, but can be accessed by user in a specific situations
- *
- * @defgroup Method
- * Functions for work with objects of this library
  */
 #ifndef __CVECTOR_H__
 #define __CVECTOR_H__
@@ -49,7 +48,7 @@ typedef struct cvector_ cvector;
  * @param[in] size Initial size of cvector storage
  * @return object New cvector object or NULL if can't allocate memory
  * @version 0.1.0
- * @ingroup Main Method
+ * @ingroup Main
  */
 cvector* cvector_new(size_t size);
 
@@ -58,23 +57,21 @@ cvector* cvector_new(size_t size);
  * @param[in]      size Initial size of cvector storage
  * @return status false:OK, true:Error 
  * @version 0.1.0
- * @ingroup Add-on Method 
+ * @ingroup Add-on
  */
 bool cvector_ctor(cvector* obj, size_t size);
 
 /** @brief Destroy and free all inside of given object
- * @param obj[in, out] cvector object for destroy
- * @return void
+ * @param[in, out] obj cvector object for destroy
  * @version 0.1.0
- * @ingroup Add-on Method
+ * @ingroup Add-on
  */
 void cvector_dtor(cvector* obj);
 
 /** @brief Delete(free) given object
  * @param[in, out] obj cvector object for delete
- * @return void
  * @version 0.1.0
- * @ingroup Main Method
+ * @ingroup Main
  */
 void cvector_delete(cvector* obj);
 // TODO: cvector_delete return new state of deleted object - always NULL
@@ -92,7 +89,7 @@ void cvector_delete(cvector* obj);
  * @param[in] pos Position for access
  * @return ptr Pointer to stored object or NULL if error occurred
  * @version 0.1.0
- * @ingroup Main Method
+ * @ingroup Main
  */
 void* cvector_at(cvector* obj, size_t pos);
 
@@ -100,7 +97,7 @@ void* cvector_at(cvector* obj, size_t pos);
  * @param[in] obj cvector object
  * @return ptr Pointer to stored object or NULL if error occurred
  * @version 0.1.0
- * @ingroup Main Method
+ * @ingroup Main
  */
 void* cvector_front(cvector* obj);
 
@@ -108,7 +105,7 @@ void* cvector_front(cvector* obj);
  * @param[in] obj cvector object
  * @return ptr Pointer to stored object or NULL if error occurred
  * @version 0.1.0
- * @ingroup Main Method
+ * @ingroup Main
  */
 void* cvector_back(cvector* obj);
 
@@ -116,7 +113,7 @@ void* cvector_back(cvector* obj);
  * @param[in] obj cvector object
  * @return ptr Pointer to storage of object or NULL if error occurred
  * @version 0.1.0
- * @ingroup Main Method
+ * @ingroup Main
  */
 void* cvector_data(cvector* obj);
 
@@ -132,7 +129,7 @@ void* cvector_data(cvector* obj);
  * @param[in] obj cvector object
  * @return status true:Empty false:Otherwise
  * @version 0.1.0
- * @ingroup Main Method
+ * @ingroup Main
  */
 bool cvector_empty(cvector* obj);
 
@@ -140,7 +137,7 @@ bool cvector_empty(cvector* obj);
  * @param[in] obj cvector object
  * @return size 
  * @version 0.1.0
- * @ingroup Main Method
+ * @ingroup Main
  */
 size_t cvector_size(cvector* obj);
 
@@ -149,7 +146,7 @@ size_t cvector_size(cvector* obj);
  * @param[in] new_size New bigger count for store
  * @return status false:OK true:Error
  * @version 0.1.0
- * @ingroup Main Method
+ * @ingroup Main
  */
 bool cvector_reserve(cvector* obj, size_t new_size);
 
@@ -157,7 +154,7 @@ bool cvector_reserve(cvector* obj, size_t new_size);
  * @param[in] obj cvector object
  * @return capacity 
  * @version 0.1.0
- * @ingroup Main Method
+ * @ingroup Main
  */
 size_t cvector_capacity(cvector* obj);
 
@@ -165,7 +162,7 @@ size_t cvector_capacity(cvector* obj);
  * @param[in] obj cvector object
  * @return status false:OK true:Error
  * @version 0.1.0
- * @ingroup Main Method
+ * @ingroup Main
  */
 bool cvector_shrink_to_fit(cvector* obj);
 
@@ -182,7 +179,7 @@ bool cvector_shrink_to_fit(cvector* obj);
  * @param[in] obj cvector object
  * @return status false:OK true:Error
  * @version 0.1.0
- * @ingroup Main Method
+ * @ingroup Main
  */
 bool cvector_clear(cvector* obj);
 
@@ -193,7 +190,7 @@ bool cvector_clear(cvector* obj);
  * @param[in]      element Element for insert
  * @return status false:OK true:Error
  * @version 0.1.0
- * @ingroup Main Method
+ * @ingroup Main
  */
 bool cvector_insert(cvector* obj, size_t pos, void* element);
 
@@ -202,7 +199,7 @@ bool cvector_insert(cvector* obj, size_t pos, void* element);
  * @param[in]      pos Position for erase
  * @return status false:OK true:Error
  * @version 0.1.0
- * @ingroup Main Method
+ * @ingroup Main
  */
 bool cvector_erase(cvector* obj, size_t pos);
 
@@ -211,7 +208,7 @@ bool cvector_erase(cvector* obj, size_t pos);
  * @param[in]      element Element for append
  * @return status false:OK true:Error
  * @version 0.1.0
- * @ingroup Main Method
+ * @ingroup Main
  */
 bool cvector_push_back(cvector* obj, void* element);
 
@@ -219,7 +216,7 @@ bool cvector_push_back(cvector* obj, void* element);
  * @param[in, out] obj cvector object
  * @return status false:OK true:Error
  * @version 0.1.0
- * @ingroup Main Method
+ * @ingroup Main
  */
 bool cvector_pop_back(cvector* obj);
 
@@ -228,7 +225,7 @@ bool cvector_pop_back(cvector* obj);
  * @param[in, out] obj_2 cvector object
  * @return status false:OK true:Error
  * @version 0.1.0
- * @ingroup Main Method
+ * @ingroup Main
  */
 bool cvector_swap(cvector* obj_1, cvector* obj_2);
 
@@ -240,7 +237,7 @@ bool cvector_swap(cvector* obj_1, cvector* obj_2);
  * @param[in, out] obj cvector object
  * @return status false:OK true:Error
  * @version 0.1.0
- * @ingroup Add-on Method
+ * @ingroup Add-on
  */
 bool cvector_increase_memory(cvector* obj);
 
