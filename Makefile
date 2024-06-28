@@ -5,10 +5,12 @@ CFLAGS = -std=c11 -pedantic -g -Wall -Wextra -Werror
 COVERAGE_FLAGS = -lgcov --coverage
 TEST_CFLAGS = -std=c11 -pedantic -g -Wall $(COVERAGE_FLAGS)
 
+LOCAL_GCOVR = gcovr
 REPORT = REPORT.html
 GCOV_DIR = report
-LOCAL_GCOVR = gcovr
 
+DOC_DIR = documentation
+DOCUMENTATION = Documentation.html
 
 CREATOR_SRC = src/creators
 ALL_SRC_DIRS = $(CREATOR_SRC)
@@ -23,6 +25,7 @@ ALL_TESTS_DIRS = $(MAIN_TESTS) $(CREATOR_TESTS)
 TEST_SRC = $(foreach dir, $(ALL_TESTS_DIRS), $(wildcard $(dir)/*.c))
 TEST_OBJ = $(TEST_SRC:.c=.o)
 TEST_NAME = cvector_test
+
 
 test: $(TEST_NAME)
 > ./$(TEST_NAME)
@@ -39,6 +42,10 @@ gcov_report:
 > @printf "\n\tREPORT REPORT FILE: '\033[38;5;46m$(REPORT)\033[0m'\n"
 > @echo;
 
+doc:
+> doxygen $(DOC_DIR)/Doxyfile
+> ln -fs $(DOC_DIR)/html/index.html $(DOCUMENTATION)
+
 check_static:
 > cppcheck --enable=all --suppress=unusedFunction --suppress=missingIncludeSystem --std=c11 $(SRC) $(HEADERS)
 
@@ -51,8 +58,14 @@ clean:
 > $(RM) $(OBJ)
 > $(RM) $(foreach dir, $(ALL_SRC_DIRS) $(ALL_TESTS_DIRS), $(wildcard $(dir)/*.gc*))
 > $(RM) $(REPORT)
+> $(RM) $(DOCUMENTATION)
 > $(RM) ./$(GCOV_DIR)/*
-> rmdir $(GCOV_DIR) || true
+> $(RM) -d ./$(DOC_DIR)/html/search/*
+> $(RM) -d ./$(DOC_DIR)/html/*
+> $(RM) -d ./$(DOC_DIR)/latex/*
+> $(RM) -d ./$(DOC_DIR)/html
+> $(RM) -d ./$(DOC_DIR)/latex
+> $(RM) -d ./$(GCOV_DIR)
 
 
 show:
