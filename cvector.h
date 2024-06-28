@@ -26,14 +26,13 @@
  *          - If func return status, this is true,false or more specific status-code ? true-false
  *      - What to do if can't allocate memory ? return false as error
  *      - All func have prefix cvector_*
- *      - 
  */
 
 /** @brief cvector struct
  * @version 0.1.0
  */
 struct cvector_ {
-    void* array; ///< main storage
+    void** array; ///< main storage
     size_t index; ///< index to next-to-write element
     size_t capasity; ///< maximum elements with current allocated memory
 };
@@ -78,6 +77,8 @@ void cvector_dtor(cvector* obj);
  * @ingroup Main Method
  */
 void cvector_delete(cvector* obj);
+// TODO: cvector_delete return new state of deleted object - always NULL
+// variable can be fast overrided with new state
 
 
 // TODO: [ ] element access
