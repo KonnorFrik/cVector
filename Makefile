@@ -39,8 +39,11 @@ gcov_report:
 > @printf "\n\tREPORT REPORT FILE: '\033[38;5;46m$(REPORT)\033[0m'\n"
 > @echo;
 
-static:
+check_static:
 > cppcheck --enable=all --suppress=unusedFunction --suppress=missingIncludeSystem --std=c11 $(SRC) $(HEADERS)
+
+check_leak: $(TEST_NAME)
+> valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(TEST_NAME)
 
 clean:
 > $(RM) $(TEST_OBJ)
