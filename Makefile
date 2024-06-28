@@ -13,6 +13,7 @@ LOCAL_GCOVR = gcovr
 CREATOR_SRC = src/creators
 ALL_SRC_DIRS = $(CREATOR_SRC)
 SRC = $(foreach dir, $(ALL_SRC_DIRS), $(wildcard $(dir)/*.c))
+HEADERS = $(foreach dir, $(ALL_SRC_DIRS), $(wildcard $(dir)/*.h))
 OBJ = $(SRC:.c=.o)
 
 MAIN_TESTS = tests
@@ -38,6 +39,8 @@ gcov_report:
 > @printf "\n\tREPORT REPORT FILE: '\033[38;5;46m$(REPORT)\033[0m'\n"
 > @echo;
 
+static:
+> cppcheck --enable=all --suppress=unusedFunction --suppress=missingIncludeSystem --std=c11 $(SRC) $(HEADERS)
 
 clean:
 > $(RM) $(TEST_OBJ)
@@ -47,6 +50,7 @@ clean:
 > $(RM) $(REPORT)
 > $(RM) ./$(GCOV_DIR)/*
 > rmdir $(GCOV_DIR) || true
+
 
 show:
 > @echo "TEST_SRC:"
