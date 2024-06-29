@@ -22,6 +22,7 @@ void test_creators_ctor_1(void** state);
 // modifiers
 void test_modifiers_push_back_1(void** state);
 void test_modifiers_push_back_2(void** state);
+void test_modifiers_push_back_3(void** state);
 void test_modifiers_push_back_bad_1(void** state);
 void test_modifiers_pop_back_1(void** state);
 void test_modifiers_pop_back_bad_1(void** state);
@@ -45,5 +46,19 @@ void test_accessor_back_1(void** state);
 void test_accessor_back_bad_1(void** state);
 void test_accessor_data_1(void** state);
 void test_accessor_data_bad_1(void** state);
+
+// capacity
+void test_capacity_empty_1(void** state);
+void test_capacity_empty_2(void** state);
+void test_capacity_empty_bad_1(void** state);
+void test_capacity_size_1(void** state);
+void test_capacity_size_2(void** state);
+void test_capacity_size_bad_1(void** state);
+void test_capacity_capacity_1(void** state);
+void test_capacity_capacity_bad_1(void** state);
+void test_capacity_reserve_1(void** state);
+void test_capacity_reserve_bad_1(void** state);
+void test_capacity_shrink_to_fit_1(void** state);
+void test_capacity_shrink_to_fit_bad_1(void** state);
 
 #endif /* __CVECTOR_TEST_H__ */

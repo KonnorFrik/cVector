@@ -19,7 +19,10 @@ DOCUMENTATION = Documentation.html
 CREATOR_SRC = src/creators
 ACCESSORS_SRC = src/accessors
 MODIFIERS_SRC = src/modifiers
+CAPACITY_SRC = src/capacity
+
 ALL_SRC_DIRS = $(CREATOR_SRC) $(ACCESSORS_SRC) $(MODIFIERS_SRC)
+ALL_SRC_DIRS += $(CAPACITY_SRC)
 
 SRC = $(foreach dir, $(ALL_SRC_DIRS), $(wildcard $(dir)/*.c))
 HEADERS = $(foreach dir, $(ALL_SRC_DIRS), $(wildcard $(dir)/*.h))
@@ -29,8 +32,10 @@ MAIN_TESTS = tests
 CREATOR_TESTS = $(MAIN_TESTS)/test_creators
 ACCESSORS_TESTS = $(MAIN_TESTS)/test_accessors
 MODIFIERS_TESTS = $(MAIN_TESTS)/test_modifiers
+CAPACITY_TESTS = $(MAIN_TESTS)/test_capacity
 
-ALL_TESTS_DIRS = $(MAIN_TESTS) $(CREATOR_TESTS) $(ACCESSORS_TESTS) $(MODIFIERS_TESTS)
+ALL_TESTS_DIRS = $(MAIN_TESTS) $(CREATOR_TESTS) $(ACCESSORS_TESTS) 
+ALL_TESTS_DIRS += $(MODIFIERS_TESTS) $(CAPACITY_TESTS)
 
 TEST_SRC = $(foreach dir, $(ALL_TESTS_DIRS), $(wildcard $(dir)/*.c))
 TEST_OBJ = $(TEST_SRC:.c=.o)
