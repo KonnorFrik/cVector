@@ -32,6 +32,25 @@ void test_modifiers_push_back_2(void** state) {
     cvector_delete(obj);
 }
 
+void test_modifiers_push_back_3(void** state) {
+    cvector* obj = cvector_new(0);
+
+    assert_non_null(obj);
+
+    int val = 123;
+
+    assert_false(cvector_push_back(obj, &val));
+    assert_false(cvector_push_back(obj, &val));
+    assert_false(cvector_push_back(obj, &val));
+    assert_false(cvector_push_back(obj, &val));
+    assert_false(cvector_push_back(obj, &val));
+
+    assert_int_equal(obj->index, 5);
+    assert_int_equal(obj->capacity, 8);
+
+    cvector_delete(obj);
+}
+
 void test_modifiers_push_back_bad_1(void** state) {
     cvector obj = {0};
 
