@@ -21,10 +21,10 @@ bool cvector_ctor(cvector* obj, size_t size) {
     bool status = false;
     obj->array = calloc(size, sizeof(void*));
     obj->index = 0;
-    obj->capasity = 0;
+    obj->capacity = 0;
 
     if ( obj->array ) {
-        obj->capasity = size;
+        obj->capacity = size;
 
     } else {
         status = true;
@@ -43,7 +43,7 @@ void cvector_dtor(cvector* obj) {
         obj->array = NULL;
     }
 
-    obj->index = obj->capasity = 0;
+    obj->index = obj->capacity = 0;
 }
 
 void cvector_delete(cvector* obj) {
