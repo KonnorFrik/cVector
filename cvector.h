@@ -33,16 +33,16 @@
 struct cvector_ {
     void** array; ///< main storage
     size_t index; ///< index to next-to-write element
-    size_t capasity; ///< maximum elements with current allocated memory
+    size_t capacity; ///< maximum elements with current allocated memory
 };
 
 typedef struct cvector_ cvector;
 
-// TODO: [ ] Create & delete
-// [ ] new - arg: size; return pointer to a new cvector object; call ctor     @Main
-// [ ] ctor - arg: size, cvector; allow size = 0; init cvector struct inside           @Add-on
-// [ ] dtor - delete cvector ONLY inside                                      @Add-on
-// [ ] delete - arg: pointer to cvector; Call dtor, safe free pointer         @Main
+// TODO: [X] Create & delete
+// [IT] new - arg: size; return pointer to a new cvector object; call ctor     @Main
+// [IT] ctor - arg: size, cvector; allow size = 0; init cvector struct inside           @Add-on
+// [IT] dtor - delete cvector ONLY inside                                      @Add-on
+// [IT] delete - arg: pointer to cvector; Call dtor, safe free pointer         @Main
 
 /** @brief Allocate and create new cvector object
  * @param[in] size Initial size of cvector storage
@@ -168,12 +168,12 @@ bool cvector_shrink_to_fit(cvector* obj);
 
 
 // TODO: [ ] modifiers
-// [ ] clear - clears the contents
-// [ ] insert - arg: position; inserts elements into concrete position
-// [ ] erase - arg: position; erases element at pos
-// [ ] push_back - arg: pointer to any object; append new pointer at the end
-// [ ] pop_back - delete pointer from end
-// [ ] swap - arg: cvector; swaps the contents
+// [I ] clear - clears the contents
+// [I ] insert - arg: position; inserts elements into concrete position
+// [I ] erase - arg: position; erases element at pos
+// [I ] push_back - arg: pointer to any object; append new pointer at the end
+// [I ] pop_back - delete pointer from end
+// [I ] swap - arg: cvector; swaps the contents
 
 /** @brief Clear all storage
  * @param[in] obj cvector object
@@ -231,7 +231,7 @@ bool cvector_swap(cvector* obj_1, cvector* obj_2);
 
 
 // TODO: [ ] Add-ons
-// [ ] increase_memory - arg: cvector; increase memory with formula capacity = capacity * 2
+// [I ] increase_memory - arg: cvector; increase memory with formula capacity = capacity * 2
 
 /** @brief Increase inner memory and reallocate storage
  * @param[in, out] obj cvector object
