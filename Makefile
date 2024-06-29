@@ -1,26 +1,36 @@
 .RECIPEPREFIX = >
 
 CC = gcc
+LOCAL_GCOVR = gcovr
+
+
 CFLAGS = -std=c11 -pedantic -g -Wall -Wextra -Werror
 COVERAGE_FLAGS = -lgcov --coverage
 TEST_CFLAGS = -std=c11 -pedantic -g -Wall $(COVERAGE_FLAGS)
 
-LOCAL_GCOVR = gcovr
+
 REPORT = REPORT.html
 GCOV_DIR = report
 
 DOC_DIR = documentation
 DOCUMENTATION = Documentation.html
 
+
 CREATOR_SRC = src/creators
-ALL_SRC_DIRS = $(CREATOR_SRC)
+ACCESSORS_SRC = src/accessors
+MODIFIERS_SRC = src/modifiers
+ALL_SRC_DIRS = $(CREATOR_SRC) $(ACCESSORS_SRC) $(MODIFIERS_SRC)
+
 SRC = $(foreach dir, $(ALL_SRC_DIRS), $(wildcard $(dir)/*.c))
 HEADERS = $(foreach dir, $(ALL_SRC_DIRS), $(wildcard $(dir)/*.h))
 OBJ = $(SRC:.c=.o)
 
 MAIN_TESTS = tests
 CREATOR_TESTS = $(MAIN_TESTS)/test_creators
-ALL_TESTS_DIRS = $(MAIN_TESTS) $(CREATOR_TESTS)
+ACCESSORS_TESTS = $(MAIN_TESTS)/test_accessors
+MODIFIERS_TESTS = $(MAIN_TESTS)/test_modifiers
+
+ALL_TESTS_DIRS = $(MAIN_TESTS) $(CREATOR_TESTS) $(ACCESSORS_TESTS) $(MODIFIERS_TESTS)
 
 TEST_SRC = $(foreach dir, $(ALL_TESTS_DIRS), $(wildcard $(dir)/*.c))
 TEST_OBJ = $(TEST_SRC:.c=.o)
