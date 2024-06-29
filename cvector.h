@@ -17,11 +17,11 @@
 // TODO: target for makefile: static and shared libs
 
 /*
- * Rules:
- * - Is struct open for user ? Yes
- * - User can access only @Main functions
+ * @mainpage
+ * - cvector struct is fully open for user, be carefully while directly change it
+ * - By design user may access only @Main functions. @Add-on funcs also acceptable, but not recomended
  * - FuncDesign:
- *      - Some func return common status-code (true, false), some result of it work
+ *      - Some func return common status-code (true, false). Some result of it work
  *      - In every unexpected situation 'false' will returns. It may be real error (can't allocate memory), or wrong argument passed, or anything else
  *      - All func have prefix cvector_*
  */
