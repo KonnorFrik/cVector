@@ -28,6 +28,9 @@ SRC = $(foreach dir, $(ALL_SRC_DIRS), $(wildcard $(dir)/*.c))
 HEADERS = $(foreach dir, $(ALL_SRC_DIRS), $(wildcard $(dir)/*.h))
 OBJ = $(SRC:.c=.o)
 
+LIB_NAME = cvector
+LIB = lib$(LIB_NAME)
+
 MAIN_TESTS = tests
 CREATOR_TESTS = $(MAIN_TESTS)/test_creators
 ACCESSORS_TESTS = $(MAIN_TESTS)/test_accessors
@@ -41,6 +44,11 @@ TEST_SRC = $(foreach dir, $(ALL_TESTS_DIRS), $(wildcard $(dir)/*.c))
 TEST_OBJ = $(TEST_SRC:.c=.o)
 TEST_NAME = cvector_test
 
+
+lib_static: $(LIB).a
+
+$(LIB).a: $(OBJ)
+> $(AR) src $@ $^
 
 test: $(TEST_NAME)
 > ./$(TEST_NAME)
@@ -81,6 +89,7 @@ clean:
 > $(RM) -d ./$(DOC_DIR)/html
 > $(RM) -d ./$(DOC_DIR)/latex
 > $(RM) -d ./$(GCOV_DIR)
+> $(RM) $(LIB).a $(LIB).so
 
 
 show:
