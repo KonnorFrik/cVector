@@ -41,6 +41,8 @@ int main() {
         cmocka_unit_test(test_accessor_back_bad_1),
         cmocka_unit_test(test_accessor_data_1),
         cmocka_unit_test(test_accessor_data_bad_1),
+        cmocka_unit_test(test_accessor_contain_1),
+        cmocka_unit_test(test_accessor_contain_bad_1),
     };
 
     const struct CMUnitTest test_capacity[] = {

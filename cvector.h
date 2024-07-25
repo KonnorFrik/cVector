@@ -103,6 +103,15 @@ void* cvector_back(cvector* obj);
  */
 void* cvector_data(cvector* obj);
 
+/** @brief Search given object in storage
+ * @param[in] obj    cvector object
+ * @param[in] search some object for search
+ * @return status true:FOUND false:ALL OTHERWISE
+ * @version 0.1.0
+ * @ingroup Main
+ */
+bool cvector_contain(cvector* obj, void* search);
+
 /** @brief Status is storage empty
  * @param[in] obj cvector object
  * @return status true:Empty false:Otherwise

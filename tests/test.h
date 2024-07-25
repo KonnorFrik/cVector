@@ -46,6 +46,8 @@ void test_accessor_back_1(void** state);
 void test_accessor_back_bad_1(void** state);
 void test_accessor_data_1(void** state);
 void test_accessor_data_bad_1(void** state);
+void test_accessor_contain_1(void** state);
+void test_accessor_contain_bad_1(void** state);
 
 // capacity
 void test_capacity_empty_1(void** state);

@@ -97,3 +97,27 @@ void test_accessor_data_bad_1(void** state) {
     assert_ptr_equal(cvector_data(NULL), NULL);
 }
 
+void test_accessor_contain_1(void** state) {
+    cvector* obj = cvector_new(3);
+
+    int with = 1;
+    int without = 2;
+
+    cvector_push_back(obj, &with);
+
+    assert_true(cvector_contain(obj, &with));
+    assert_false(cvector_contain(obj, &without));
+
+    cvector_delete(obj);
+}
+
+void test_accessor_contain_bad_1(void** state) {
+    cvector* obj = cvector_new(0);
+
+    int without = 2;
+
+    assert_false(cvector_contain(NULL, &without));
+    assert_false(cvector_contain(obj, &without));
+
+    cvector_delete(obj);
+}

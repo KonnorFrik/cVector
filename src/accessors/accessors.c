@@ -31,3 +31,19 @@ void* cvector_data(cvector* obj) {
 
     return obj->array;
 }
+
+bool cvector_contain(cvector* obj, void* search) {
+    bool status = false;
+
+    if ( !obj || !obj->array ) {
+        return status;
+    }
+
+    for (size_t i = 0; !status && i < obj->index; ++i) {
+        if ( obj->array[i] == search ) {
+            status = true;
+        }
+    }
+
+    return status;
+}
