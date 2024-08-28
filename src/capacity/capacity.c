@@ -50,14 +50,17 @@ bool cvector_shrink_to_fit(cvector* obj) {
     }
 
     bool status = false;
-    void** tmp = realloc(obj->array, obj->index * sizeof(void*));
 
-    if ( tmp ) {
-        obj->array = tmp;
-        obj->capacity = obj->index;
+    if ( obj->index > 0 ) {
+        void** tmp = realloc(obj->array, obj->index * sizeof(void*));
 
-    } else {
-        status = true;
+        if ( tmp ) {
+            obj->array = tmp;
+            obj->capacity = obj->index;
+
+        } else {
+            status = true;
+        }
     }
 
     return status;
