@@ -1,4 +1,6 @@
 #include "../test.h"
+#include "../../cvector.h"
+#include <stdlib.h>
 
 void test_accessor_at_1(void** state) {
     cvector* obj = cvector_new(3);

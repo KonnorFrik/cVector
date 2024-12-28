@@ -1,4 +1,7 @@
 #include "../test.h"
+#include "../../cvector.h"
+#include <stdlib.h>
+
 
 void test_creators_create_zero_size(void** state) {
     size_t size = 0;
@@ -48,5 +51,7 @@ void test_creators_ctor_1(void** state) {
     assert_false(cvector_ctor(&obj, size));
     assert_non_null(obj.array);
     assert_int_equal(obj.capacity, size);
+
+    cvector_dtor(&obj);
 }
 

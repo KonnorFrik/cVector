@@ -1,4 +1,6 @@
 #include "../test.h"
+#include "../../cvector.h"
+#include <stdlib.h>
 
 void test_capacity_empty_1(void** state) {
     cvector* obj = cvector_new(0);
