@@ -2,8 +2,6 @@
 #include "../../cvector_macros.h"
 #include <cmocka.h>
 
-cvectorm_declare(int);
-
 void test_cvectorm_int_capacity_empty_good_1(void** state) {
     UNUSED(state);
     size_t size = 2;

@@ -2,8 +2,6 @@
 #include "../../cvector_macros.h"
 #include <cmocka.h>
 
-cvectorm_declare(int);
-
 void test_cvectorm_int_accessors_at_good_1(void** state) {
     UNUSED(state);
     size_t size = 2;
@@ -129,14 +127,17 @@ void test_cvectorm_int_accessors_contain_good_1(void** state) {
     cvectorm_make_name(int) obj = {0};
     cvectorm_ctor(obj, size);
 
-    cvectorm_push_back(obj, 1);
+    int value_1 = 1;
+    int value_2 = 42;
+
+    cvectorm_push_back(obj, value_1);
     cvectorm_push_back(obj, 2);
 
     int result = 0;
-    cvectorm_contain(obj, 1, result);
+    cvectorm_contain(obj, value_1, result);
     assert_true(result);
 
-    cvectorm_contain(obj, 42, result);
+    cvectorm_contain(obj, value_2, result);
     assert_false(result);
 
     cvectorm_dtor(obj);
@@ -146,8 +147,9 @@ void test_cvectorm_int_accessors_contain_bad_1(void** state) {
     UNUSED(state);
     cvectorm_make_name(int) obj = {0};
 
+    int value_1 = 1;
     int result = 0;
-    cvectorm_contain(obj, 1, result);
+    cvectorm_contain(obj, value_1, result);
     assert_false(result);
 
     cvectorm_dtor(obj);
