@@ -61,8 +61,9 @@ $(CVECTOR_TEST_NAME): LDFLAGS = $(shell pkg-config --libs cmocka)
 $(CVECTOR_TEST_NAME): $(CVECTOR_TEST_OBJ) $(OBJ)
 	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
-CVECTORM_TEST_DIR = $(MAIN_TESTS_DIR)/test_cvectorm_int
-CVECTORM_TEST_SRC = $(wildcard $(CVECTORM_TEST_DIR)/*.c) $(MAIN_TESTS_DIR)/test_cvectorm_int_main.c
+# $(MAIN_TESTS_DIR)/test_cvectorm_struct_1
+CVECTORM_TEST_DIR = $(MAIN_TESTS_DIR)/test_cvectorm_int $(MAIN_TESTS_DIR)/test_cvectorm_struct_1
+CVECTORM_TEST_SRC = $(foreach dir, $(CVECTORM_TEST_DIR), $(wildcard $(dir)/*.c)) $(MAIN_TESTS_DIR)/test_cvectorm_int_main.c
 CVECTORM_TEST_OBJ = $(CVECTORM_TEST_SRC:.c=.o)
 CVECTORM_TEST_NAME = cvector_macros_test
 
