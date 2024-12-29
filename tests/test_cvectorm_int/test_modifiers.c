@@ -20,7 +20,6 @@ void test_cvectorm_int_modifiers_push_back_good_1(void** state) {
 
 void test_cvectorm_int_modifiers_push_back_bad_1(void** state) {
     UNUSED(state);
-    size_t size = 2;
     cvectorm_make_name(int) obj = {0};
 
     int value_1 = 42;
@@ -57,7 +56,6 @@ void test_cvectorm_int_modifiers_clear_good_1(void** state) {
 
 void test_cvectorm_int_modifiers_clear_bad_1(void** state) {
     UNUSED(state);
-    size_t size = 2;
     cvectorm_make_name(int) obj = {0};
     cvectorm_clear(obj);
     cvectorm_dtor(obj);
