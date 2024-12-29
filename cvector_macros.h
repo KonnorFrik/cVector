@@ -2,12 +2,13 @@
 #define __CVECTOR_MACROS_H__
 
 #include <stdlib.h>
+#include <string.h>
 
 /** @brief */
-#define cvectorm_make_name(type) cvector_##type
+#define cvectorm_make_name(type) cvectorm_##type
 
 /** @brief */
-#define cvectorm_make_ptr(type) cvector_##type*
+#define cvectorm_make_ptr(type) cvectorm_##type*
 
 /** @brief */
 #define cvectorm_declare(type) \
@@ -20,109 +21,139 @@
 // =====
 // Creators
 // =====
-#define cvectorm_ctor(cvectorm_var, size)                                            \
-    (cvectorm_var).array = calloc((size), sizeof(__typeof__(*(cvectorm_var).array))); \
-    if ( (cvectorm_var).array != NULL ) {                                            \
-        (cvectorm_var).capacity = (size);                                            \
+#define cvectorm_ctor(self, size)                                            \
+    (self).array = calloc((size), sizeof(__typeof__(*(self).array))); \
+    if ( (self).array != NULL ) {                                            \
+        (self).capacity = (size);                                            \
     }
 
-#define cvectorm_dtor(cvectorm_var)       \
-    if ( (cvectorm_var).array != NULL ) { \
-        free((cvectorm_var).array);       \
-        (cvectorm_var).array = NULL;      \
-        (cvectorm_var).index = 0;         \
-        (cvectorm_var).capacity = 0;      \
+#define cvectorm_dtor(self)       \
+    if ( (self).array != NULL ) { \
+        free((self).array);       \
+        (self).array = NULL;      \
+        (self).index = 0;         \
+        (self).capacity = 0;      \
     }
 
 // =====
 // Accessors
 // =====
-#define cvectorm_at(cvectorm_var, pos)           \
+#define cvectorm_at(self, pos)           \
     (                                            \
-        (cvectorm_var).array == NULL ||          \
-        (pos) >= (cvectorm_var).index            \
+        (self).array == NULL ||          \
+        (pos) >= (self).index            \
     )                                            \
-        ? (__typeof__(*(cvectorm_var).array)){0} \
-        : (cvectorm_var).array[(pos)]
+        ? (__typeof__(*(self).array)){0} \
+        : (self).array[(pos)]
 
-#define cvectorm_front(cvectorm_var) \
+#define cvectorm_front(self) \
     ( \
-        (cvectorm_var).array == NULL \
+        (self).array == NULL \
     ) \
-        ? (__typeof__(*(cvectorm_var).array)){0} \
-        : (cvectorm_var).array[0]
+        ? (__typeof__(*(self).array)){0} \
+        : (self).array[0]
 
-#define cvectorm_back(cvectorm_var) \
+#define cvectorm_back(self) \
     ( \
-        (cvectorm_var).array == NULL || \
-        (cvectorm_var).index == 0 \
+        (self).array == NULL || \
+        (self).index == 0 \
     ) \
-        ? (__typeof__(*(cvectorm_var).array)){0} \
-        : (cvectorm_var).array[(cvectorm_var).index - 1]
+        ? (__typeof__(*(self).array)){0} \
+        : (self).array[(self).index - 1]
 
-#define cvectorm_data(cvectorm_var) ((cvectorm_var).array)
+#define cvectorm_data(self) ((self).array)
 
-#define cvectorm_contain(cvectorm_var, search_var, result_var) \
+#define cvectorm_contain(self, search_var, result_var) \
     result_var = 0; \
-    if ( (cvectorm_var).array != NULL ) { \
-      for ( size_t i = 0; i < (cvectorm_var).index; ++i) { \
-          result_var |= (cvectorm_var).array[i] == (search_var); \
+    if ( (self).array != NULL ) { \
+      for ( size_t i = 0; i < (self).index; ++i) { \
+          result_var |= (memcmp(&(self).array[i], &(search_var), sizeof(search_var)) == 0); \
       } \
     }
 
 // =====
 // Capacity
 // =====
-#define cvectorm_empty(cvectorm_var) ((cvectorm_var).index == 0)
+#define cvectorm_empty(self) ((self).index == 0)
 
-#define cvectorm_size(cvectorm_var) ((cvectorm_var).index)
+#define cvectorm_size(self) ((self).index)
 
-#define cvectorm_reserve(cvectorm_var, new_size) \
-    if ( (new_size) > (cvectorm_var).capacity ) { \
-        void* tmp = realloc((cvectorm_var).array, (new_size) * sizeof(__typeof__(*(cvectorm_var).array))); \
+#define cvectorm_reserve(self, new_size) \
+    if ( (new_size) > (self).capacity ) { \
+        void* tmp = realloc((self).array, (new_size) * sizeof(__typeof__(*(self).array))); \
         if ( tmp != NULL ) { \
-            (cvectorm_var).array = tmp; \
-            (cvectorm_var).capacity = new_size; \
+            (self).array = tmp; \
+            (self).capacity = new_size; \
         } \
     }
 
-#define cvectorm_capacity(cvectorm_var) ((cvectorm_var).capacity)
+#define cvectorm_capacity(self) ((self).capacity)
 
-#define cvectorm_shrink_to_fit(cvectorm_var) \
-    if ( (cvectorm_var).index > 0 && (cvectorm_var).index < (cvectorm_var).capacity ) { \
-        void* tmp = realloc((cvectorm_var).array, (cvectorm_var).index * sizeof(__typeof__(*(cvectorm_var).array))); \
+#define cvectorm_shrink_to_fit(self) \
+    if ( (self).index > 0 && (self).index < (self).capacity ) { \
+        void* tmp = realloc((self).array, (self).index * sizeof(__typeof__(*(self).array))); \
         if ( tmp != NULL ) { \
-            (cvectorm_var).array = tmp; \
-            (cvectorm_var).capacity = (cvectorm_var).index; \
+            (self).array = tmp; \
+            (self).capacity = (self).index; \
         } \
     }
 
 // =====
 // Modifiers
 // =====
-#define cvectorm_clear(cvectorm_var) \
-    if ( (cvectorm_var).array != NULL ) { \
-        memset((cvectorm_var).array, (__typeof__(*(cvectorm_var).array)){0}, (cvectorm_var).capacity); \
-        (cvectorm_var).index = 0; \
+#define cvectorm_clear(self) \
+    if ( (self).array != NULL ) { \
+        memset((self).array, (__typeof__(*(self).array)){0}, (self).capacity); \
+        (self).index = 0; \
     }
 
-#define cvectorm_push_back(cvectorm_var, value) \
-    if ( (cvectorm_var).array != NULL ) { \
-        if ( (cvectorm_var).index >= (cvectorm_var).capacity ) { \
-            size_t new_size = (cvectorm_var).capacity * 2; \
+#define cvectorm_insert(self, pos, element) \
+    if ( (self).array != NULL && (pos) <= (self).index ) { \
+        if ( (pos) == (self).index ) { \
+            cvectorm_push_back((self), (element)); \
+        } else { \
+            __typeof__(*(self).array) element_copy = (element); \
+            for (size_t i = (pos); i < (self).index; ++i) { \
+                __typeof__(*(self).array) tmp = (self).array[i]; \
+                (self).array[i] = element_copy; \
+                element_copy = tmp; \
+            } \
+            cvectorm_push_back((self), element_copy); \
+        } \
+    }
+
+#define cvectorm_erase(self, pos) \
+    if ( (self).array != NULL && (pos) < (self).index ) { \
+        for (size_t i = (pos); (i + 1) < (self).index; ++i) { \
+            (self).array[i] = (self).array[i + 1]; \
+        } \
+        --(self).index; \
+    }
+
+#define cvectorm_push_back(self, value) \
+    if ( (self).array != NULL ) { \
+        if ( (self).index >= (self).capacity ) { \
+            size_t new_size = (self).capacity * 2; \
             new_size = new_size == 0 ? 2 : new_size; \
-            void* tmp = realloc((cvectorm_var).array, new_size * sizeof(__typeof__(*(cvectorm_var).array))); \
+            void* tmp = realloc((self).array, new_size * sizeof(__typeof__(*(self).array))); \
             if ( tmp != NULL ) { \
-                (cvectorm_var).array = tmp; \
-                (cvectorm_var).capacity = new_size; \
+                (self).array = tmp; \
+                (self).capacity = new_size; \
             } \
         } \
-        (cvectorm_var).array[(cvectorm_var).index++] = value; \
+        (self).array[(self).index++] = value; \
     }
 
-#define cvectorm_pop_back(cvectorm_var) \
-    if ( (cvectorm_var).array != NULL || (cvectorm_var).index > 0 ) { \
-        (cvectorm_var).array[--(cvectorm_var).index] = (__typeof__(*(cvectorm_var).array)){0}; \
+#define cvectorm_pop_back(self) \
+    if ( (self).array != NULL || (self).index > 0 ) { \
+        (self).array[--(self).index] = (__typeof__(*(self).array)){0}; \
     }
+
+#define cvectorm_swap(self, other) \
+{ \
+    __auto_type tmp = (self); \
+    (self) = (other); \
+    (other) = tmp; \
+}
 
 #endif /* __CVECTOR_MACROS_H__ */
