@@ -5,7 +5,7 @@
 void test_cvectorm_struct_foo_creators_zero_size(void** state) {
     UNUSED(state);
     size_t size = 0;
-    cvectorm_make_name(int) obj = {0};
+    cvectorm_make_name(struct_foo) obj = {0};
     cvectorm_ctor(obj, size);
 
     assert_non_null(obj.array);
@@ -18,7 +18,7 @@ void test_cvectorm_struct_foo_creators_zero_size(void** state) {
 void test_cvectorm_struct_foo_creators_n_size(void** state) {
     UNUSED(state);
     size_t size = 3;
-    cvectorm_make_name(int) obj = {0};
+    cvectorm_make_name(struct_foo) obj = {0};
     cvectorm_ctor(obj, size);
 
     assert_non_null(obj.array);
@@ -31,7 +31,7 @@ void test_cvectorm_struct_foo_creators_n_size(void** state) {
 void test_cvectorm_struct_foo_creators_dtor_1(void** state) {
     UNUSED(state);
     size_t size = 3;
-    cvectorm_make_name(int) obj = {0};
+    cvectorm_make_name(struct_foo) obj = {0};
     cvectorm_ctor(obj, size);
 
     assert_non_null(obj.array);
@@ -48,7 +48,7 @@ void test_cvectorm_struct_foo_creators_dtor_1(void** state) {
 void test_cvectorm_struct_foo_creators_dtor_2(void** state) {
     UNUSED(state);
     size_t size = 3;
-    cvectorm_make_name(int) obj = {0};
+    cvectorm_make_name(struct_foo) obj = {0};
     cvectorm_ctor(obj, size);
 
     assert_non_null(obj.array);
