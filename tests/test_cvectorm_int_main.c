@@ -1,12 +1,30 @@
 #include "test.h"
 #include <stdio.h>
 
+// creators
 void test_cvectorm_int_creators_zero_size(void** state);
 void test_cvectorm_int_creators_n_size(void** state);
 void test_cvectorm_int_creators_dtor_1(void** state);
+void test_cvectorm_int_creators_dtor_2(void** state);
 
+// modifiers
 void test_cvectorm_int_modifiers_push_back_good_1(void** state);
+void test_cvectorm_int_modifiers_push_back_bad_1(void** state);
+void test_cvectorm_int_modifiers_clear_good_1(void** state);
+void test_cvectorm_int_modifiers_clear_bad_1(void** state);
+void test_cvectorm_int_modifiers_pop_back_good_1(void** state);
+void test_cvectorm_int_modifiers_pop_back_bad_1(void** state);
+void test_cvectorm_int_modifiers_pop_back_bad_2(void** state);
+void test_cvectorm_int_modifiers_insert_good_1(void** state);
+void test_cvectorm_int_modifiers_insert_good_2(void** state);
+void test_cvectorm_int_modifiers_insert_bad_1(void** state);
+void test_cvectorm_int_modifiers_insert_bad_2(void** state);
+void test_cvectorm_int_modifiers_erase_good_1(void** state);
+void test_cvectorm_int_modifiers_erase_bad_1(void** state);
+void test_cvectorm_int_modifiers_erase_bad_2(void** state);
+void test_cvectorm_int_modifiers_swap_good_1(void** state);
 
+// accessors - int
 void test_cvectorm_int_accessors_at_good_1(void** state);
 void test_cvectorm_int_accessors_at_bad_1(void** state);
 void test_cvectorm_int_accessors_front_good_1(void** state);
@@ -17,7 +35,19 @@ void test_cvectorm_int_accessors_data_good_1(void** state);
 void test_cvectorm_int_accessors_data_bad_1(void** state);
 void test_cvectorm_int_accessors_contain_good_1(void** state);
 void test_cvectorm_int_accessors_contain_bad_1(void** state);
+// accessors - struct_foo
+void test_cvectorm_struct_foo_accessors_at_good_1(void** state);
+void test_cvectorm_struct_foo_accessors_at_bad_1(void** state);
+void test_cvectorm_struct_foo_accessors_front_good_1(void** state);
+void test_cvectorm_struct_foo_accessors_front_bad_1(void** state);
+void test_cvectorm_struct_foo_accessors_back_good_1(void** state);
+void test_cvectorm_struct_foo_accessors_back_bad_1(void** state);
+void test_cvectorm_struct_foo_accessors_data_good_1(void** state);
+void test_cvectorm_struct_foo_accessors_data_bad_1(void** state);
+void test_cvectorm_struct_foo_accessors_contain_good_1(void** state);
+void test_cvectorm_struct_foo_accessors_contain_bad_1(void** state);
 
+// capacity
 void test_cvectorm_int_capacity_empty_good_1(void** state);
 void test_cvectorm_int_capacity_empty_bad_1(void** state);
 void test_cvectorm_int_capacity_size_good_1(void** state);
@@ -33,15 +63,31 @@ void test_cvectorm_int_capacity_shrink_to_fit_bad_1(void** state);
 int main() {
     int all_results = 0;
 
+    // creators
     const struct CMUnitTest test_creators[] = {
         cmocka_unit_test(test_cvectorm_int_creators_zero_size),
         cmocka_unit_test(test_cvectorm_int_creators_n_size),
         cmocka_unit_test(test_cvectorm_int_creators_dtor_1),
+        cmocka_unit_test(test_cvectorm_int_creators_dtor_2),
     };
 
     // modifiers tests
     const struct CMUnitTest test_modifiers[] = {
         cmocka_unit_test(test_cvectorm_int_modifiers_push_back_good_1),
+        cmocka_unit_test(test_cvectorm_int_modifiers_push_back_bad_1),
+        cmocka_unit_test(test_cvectorm_int_modifiers_clear_good_1),
+        cmocka_unit_test(test_cvectorm_int_modifiers_clear_bad_1),
+        cmocka_unit_test(test_cvectorm_int_modifiers_pop_back_good_1),
+        cmocka_unit_test(test_cvectorm_int_modifiers_pop_back_bad_1),
+        cmocka_unit_test(test_cvectorm_int_modifiers_pop_back_bad_2),
+        cmocka_unit_test(test_cvectorm_int_modifiers_insert_good_1),
+        cmocka_unit_test(test_cvectorm_int_modifiers_insert_good_2),
+        cmocka_unit_test(test_cvectorm_int_modifiers_insert_bad_1),
+        cmocka_unit_test(test_cvectorm_int_modifiers_insert_bad_2),
+        cmocka_unit_test(test_cvectorm_int_modifiers_erase_good_1),
+        cmocka_unit_test(test_cvectorm_int_modifiers_erase_bad_1),
+        cmocka_unit_test(test_cvectorm_int_modifiers_erase_bad_2),
+        cmocka_unit_test(test_cvectorm_int_modifiers_swap_good_1),
     };
 
     // access tests
@@ -56,6 +102,17 @@ int main() {
         cmocka_unit_test(test_cvectorm_int_accessors_data_bad_1),
         cmocka_unit_test(test_cvectorm_int_accessors_contain_good_1),
         cmocka_unit_test(test_cvectorm_int_accessors_contain_bad_1),
+
+        cmocka_unit_test(test_cvectorm_struct_foo_accessors_at_good_1),
+        cmocka_unit_test(test_cvectorm_struct_foo_accessors_at_bad_1),
+        cmocka_unit_test(test_cvectorm_struct_foo_accessors_front_good_1),
+        cmocka_unit_test(test_cvectorm_struct_foo_accessors_front_bad_1),
+        cmocka_unit_test(test_cvectorm_struct_foo_accessors_back_good_1),
+        cmocka_unit_test(test_cvectorm_struct_foo_accessors_back_bad_1),
+        cmocka_unit_test(test_cvectorm_struct_foo_accessors_data_good_1),
+        cmocka_unit_test(test_cvectorm_struct_foo_accessors_data_bad_1),
+        cmocka_unit_test(test_cvectorm_struct_foo_accessors_contain_good_1),
+        cmocka_unit_test(test_cvectorm_struct_foo_accessors_contain_bad_1),
     };
 
     // capacity tests
