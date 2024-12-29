@@ -68,7 +68,7 @@ void cvector_dtor(cvector* obj);
  */
 void cvector_delete(cvector* obj);
 // TODO: [ ] cvector_delete return new state of deleted object - always NULL
-// variable can be fast overrided with new state! :)
+// variable can be fast overrided with new state
 
 /** @brief access specified element with bounds checking
  * @param[in] obj cvector object
