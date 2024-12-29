@@ -103,7 +103,7 @@
 // =====
 #define cvectorm_clear(self) \
     if ( (self).array != NULL ) { \
-        memset((self).array, (__typeof__(*(self).array)){0}, (self).capacity); \
+        memset((self).array, 0, (self).capacity); \
         (self).index = 0; \
     }
 
@@ -145,7 +145,7 @@
     }
 
 #define cvectorm_pop_back(self) \
-    if ( (self).array != NULL || (self).index > 0 ) { \
+    if ( (self).array != NULL && (self).index > 0 ) { \
         (self).array[--(self).index] = (__typeof__(*(self).array)){0}; \
     }
 
