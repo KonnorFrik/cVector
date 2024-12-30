@@ -3,6 +3,7 @@
 #include <stdlib.h>
 
 void test_modifiers_push_back_1(void** state) {
+    UNUSED(state);
     cvector* obj = cvector_new(0);
 
     assert_non_null(obj);
@@ -18,6 +19,7 @@ void test_modifiers_push_back_1(void** state) {
 }
 
 void test_modifiers_push_back_2(void** state) {
+    UNUSED(state);
     cvector* obj = cvector_new(2);
 
     assert_non_null(obj);
@@ -35,6 +37,7 @@ void test_modifiers_push_back_2(void** state) {
 }
 
 void test_modifiers_push_back_3(void** state) {
+    UNUSED(state);
     cvector* obj = cvector_new(0);
 
     assert_non_null(obj);
@@ -54,6 +57,7 @@ void test_modifiers_push_back_3(void** state) {
 }
 
 void test_modifiers_push_back_bad_1(void** state) {
+    UNUSED(state);
     cvector obj = {0};
 
     assert_true(cvector_push_back(NULL, NULL));
@@ -61,6 +65,7 @@ void test_modifiers_push_back_bad_1(void** state) {
 }
 
 void test_modifiers_pop_back_1(void** state) {
+    UNUSED(state);
     cvector* obj = cvector_new(2);
 
     assert_non_null(obj);
@@ -92,6 +97,7 @@ void test_modifiers_pop_back_1(void** state) {
 }
 
 void test_modifiers_pop_back_bad_1(void** state) {
+    UNUSED(state);
     cvector obj = {0};
 
     assert_true(cvector_pop_back(NULL));
@@ -100,6 +106,7 @@ void test_modifiers_pop_back_bad_1(void** state) {
 
 
 void test_modifiers_clear_1(void** state) {
+    UNUSED(state);
     cvector* obj = cvector_new(2);
 
     assert_non_null(obj);
@@ -119,6 +126,7 @@ void test_modifiers_clear_1(void** state) {
 }
 
 void test_modifiers_clear_bad_1(void** state) {
+    UNUSED(state);
     cvector obj = {0};
 
     assert_true(cvector_clear(NULL));
@@ -127,6 +135,7 @@ void test_modifiers_clear_bad_1(void** state) {
 }
 
 void test_modifiers_insert_1(void** state) {
+    UNUSED(state);
     cvector* obj = cvector_new(2);
 
     assert_non_null(obj);
@@ -150,6 +159,7 @@ void test_modifiers_insert_1(void** state) {
 }
 
 void test_modifiers_insert_2(void** state) {
+    UNUSED(state);
     cvector* obj = cvector_new(2);
 
     assert_non_null(obj);
@@ -173,6 +183,7 @@ void test_modifiers_insert_2(void** state) {
 }
 
 void test_modifiers_insert_bad_1(void** state) {
+    UNUSED(state);
     cvector obj = {0};
 
     assert_true(cvector_insert(NULL, 0, NULL));
@@ -182,6 +193,7 @@ void test_modifiers_insert_bad_1(void** state) {
 }
 
 void test_modifiers_erase_1(void** state) {
+    UNUSED(state);
     cvector* obj = cvector_new(2);
 
     assert_non_null(obj);
@@ -210,6 +222,7 @@ void test_modifiers_erase_1(void** state) {
 }
 
 void test_modifiers_erase_bad_1(void** state) {
+    UNUSED(state);
     cvector obj = {0};
 
     assert_true(cvector_erase(NULL, 0));
@@ -219,6 +232,7 @@ void test_modifiers_erase_bad_1(void** state) {
 }
 
 void test_modifiers_swap_1(void** state) {
+    UNUSED(state);
     cvector* obj = cvector_new(2);
     cvector* obj2 = cvector_new(0);
 
@@ -256,10 +270,12 @@ void test_modifiers_swap_1(void** state) {
 }
 
 void test_modifiers_swap_bad_1(void** state) {
+    UNUSED(state);
     assert_true(cvector_swap(NULL, NULL));
 }
 
 void test_modifiers_inc_mem_bad_1(void** state) {
+    UNUSED(state);
     cvector obj = {0};
 
     assert_true(cvector_increase_memory(NULL));

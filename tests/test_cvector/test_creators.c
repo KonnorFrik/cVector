@@ -4,6 +4,7 @@
 
 
 void test_creators_create_zero_size(void** state) {
+    UNUSED(state);
     size_t size = 0;
     cvector* obj = cvector_new(size);
 
@@ -16,6 +17,7 @@ void test_creators_create_zero_size(void** state) {
 }
 
 void test_creators_create_n_size(void** state) {
+    UNUSED(state);
     size_t size = 3;
     cvector* obj = cvector_new(size);
 
@@ -28,6 +30,7 @@ void test_creators_create_n_size(void** state) {
 }
 
 void test_creators_dtor_1(void** state) {
+    UNUSED(state);
     size_t size = 3;
     cvector* obj = cvector_new(size);
 
@@ -41,10 +44,12 @@ void test_creators_dtor_1(void** state) {
 }
 
 void test_creators_ctor_bad_1(void** state) {
+    UNUSED(state);
     assert_true(cvector_ctor(NULL, 0));
 }
 
 void test_creators_ctor_1(void** state) {
+    UNUSED(state);
     size_t size = 3;
     cvector obj = {0};
 

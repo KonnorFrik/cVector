@@ -3,6 +3,7 @@
 #include <stdlib.h>
 
 void test_capacity_empty_1(void** state) {
+    UNUSED(state);
     cvector* obj = cvector_new(0);
 
     assert_true(cvector_empty(obj));
@@ -11,6 +12,7 @@ void test_capacity_empty_1(void** state) {
 }
 
 void test_capacity_empty_2(void** state) {
+    UNUSED(state);
     cvector* obj = cvector_new(0);
 
     cvector_push_back(obj, (void*)1);
@@ -21,9 +23,12 @@ void test_capacity_empty_2(void** state) {
 }
 
 void test_capacity_empty_bad_1(void** state) {
+    UNUSED(state);
     assert_true(cvector_empty(NULL));
 }
+
 void test_capacity_size_1(void** state) {
+    UNUSED(state);
     cvector* obj = cvector_new(0);
 
     assert_int_equal(cvector_size(obj), 0);
@@ -32,6 +37,7 @@ void test_capacity_size_1(void** state) {
 }
 
 void test_capacity_size_2(void** state) {
+    UNUSED(state);
     cvector* obj = cvector_new(0);
 
     cvector_push_back(obj, (void*)123);
@@ -42,10 +48,12 @@ void test_capacity_size_2(void** state) {
 }
 
 void test_capacity_size_bad_1(void** state) {
+    UNUSED(state);
     assert_int_equal(cvector_size(NULL), 0);
 }
 
 void test_capacity_capacity_1(void** state) {
+    UNUSED(state);
     cvector* obj = cvector_new(0);
 
     assert_int_equal(cvector_capacity(obj), 0);
@@ -61,10 +69,12 @@ void test_capacity_capacity_1(void** state) {
 }
 
 void test_capacity_capacity_bad_1(void** state) {
+    UNUSED(state);
     assert_int_equal(cvector_capacity(NULL), 0);
 }
 
 void test_capacity_reserve_1(void** state) {
+    UNUSED(state);
     cvector* obj = cvector_new(0);
 
     assert_int_equal(cvector_capacity(obj), 0);
@@ -82,10 +92,12 @@ void test_capacity_reserve_1(void** state) {
 }
 
 void test_capacity_reserve_bad_1(void** state) {
+    UNUSED(state);
     assert_true(cvector_reserve(NULL, 2));
 }
 
 void test_capacity_shrink_to_fit_1(void** state) {
+    UNUSED(state);
     cvector* obj = cvector_new(10);
 
     assert_int_equal(cvector_capacity(obj), 10);
@@ -101,6 +113,7 @@ void test_capacity_shrink_to_fit_1(void** state) {
 }
 
 void test_capacity_shrink_to_fit_bad_1(void** state) {
+    UNUSED(state);
     assert_true(cvector_shrink_to_fit(NULL));
 }
 
