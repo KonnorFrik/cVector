@@ -1,6 +1,9 @@
 #include "../test.h"
+#include "../../cvector.h"
+#include <stdlib.h>
 
 void test_accessor_at_1(void** state) {
+    UNUSED(state);
     cvector* obj = cvector_new(3);
 
     int val1 = 1;
@@ -19,6 +22,7 @@ void test_accessor_at_1(void** state) {
 }
 
 void test_accessor_at_bad_1(void** state) {
+    UNUSED(state);
     cvector obj = {0};
 
     assert_ptr_equal(cvector_at(NULL, 0), NULL);
@@ -28,6 +32,7 @@ void test_accessor_at_bad_1(void** state) {
 }
 
 void test_accessor_front_1(void** state) {
+    UNUSED(state);
     cvector* obj = cvector_new(3);
 
     int val1 = 1;
@@ -44,6 +49,7 @@ void test_accessor_front_1(void** state) {
 }
 
 void test_accessor_front_bad_1(void** state) {
+    UNUSED(state);
     cvector obj = {0};
 
     assert_ptr_equal(cvector_front(NULL), NULL);
@@ -51,6 +57,7 @@ void test_accessor_front_bad_1(void** state) {
 }
 
 void test_accessor_back_1(void** state) {
+    UNUSED(state);
     cvector* obj = cvector_new(3);
 
     int val1 = 1;
@@ -67,6 +74,7 @@ void test_accessor_back_1(void** state) {
 }
 
 void test_accessor_back_bad_1(void** state) {
+    UNUSED(state);
     cvector obj = {0};
 
     assert_ptr_equal(cvector_back(NULL), NULL);
@@ -74,6 +82,7 @@ void test_accessor_back_bad_1(void** state) {
 }
 
 void test_accessor_data_1(void** state) {
+    UNUSED(state);
     cvector* obj = cvector_new(3);
 
     int val1 = 1;
@@ -94,10 +103,12 @@ void test_accessor_data_1(void** state) {
 }
 
 void test_accessor_data_bad_1(void** state) {
+    UNUSED(state);
     assert_ptr_equal(cvector_data(NULL), NULL);
 }
 
 void test_accessor_contain_1(void** state) {
+    UNUSED(state);
     cvector* obj = cvector_new(3);
 
     int with = 1;
@@ -112,6 +123,7 @@ void test_accessor_contain_1(void** state) {
 }
 
 void test_accessor_contain_bad_1(void** state) {
+    UNUSED(state);
     cvector* obj = cvector_new(0);
 
     int without = 2;
