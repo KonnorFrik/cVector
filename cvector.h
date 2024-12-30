@@ -67,8 +67,6 @@ void cvector_dtor(cvector* obj);
  * @ingroup Main
  */
 void cvector_delete(cvector* obj);
-// TODO: [ ] cvector_delete return new state of deleted object - always NULL
-// variable can be fast overrided with new state
 
 /** @brief access specified element with bounds checking
  * @param[in] obj cvector object
@@ -122,13 +120,13 @@ bool cvector_empty(cvector* obj);
 
 /** @brief Count of already stored elements
  * @param[in] obj cvector object
- * @return size 
+ * @return count 
  * @version 0.1.0
  * @ingroup Main
  */
 size_t cvector_size(cvector* obj);
 
-/** @brief Allocate more memory inside of given object
+/** @brief Allocate more memory of storage
  * @param[in] obj cvector object
  * @param[in] new_size New bigger count for store
  * @return status false:OK true:Error
@@ -146,7 +144,7 @@ bool cvector_reserve(cvector* obj, size_t new_size);
 size_t cvector_capacity(cvector* obj);
 
 /** @brief Reduce memory 
- * @param[in] obj cvector object
+ * @param[in, out] obj cvector object
  * @return status false:OK true:Error
  * @version 0.1.0
  * @ingroup Main
@@ -154,7 +152,7 @@ size_t cvector_capacity(cvector* obj);
 bool cvector_shrink_to_fit(cvector* obj);
 
 /** @brief Clear all storage
- * @param[in] obj cvector object
+ * @param[in, out] obj cvector object
  * @return status false:OK true:Error
  * @version 0.1.0
  * @ingroup Main
