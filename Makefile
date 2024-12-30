@@ -78,7 +78,7 @@ $(CVECTORM_TEST_NAME): $(CVECTORM_TEST_OBJ)
 	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
 # === test all
-test: test_cvector test_cvectorm
+test: test_cvectorm test_cvector
 
 clean_test:
 	$(RM) $(CVECTOR_TEST_NAME)
