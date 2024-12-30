@@ -42,14 +42,10 @@ clean_lib_static:
 # ============== TEST ==============
 MAIN_TESTS_DIR = tests
 
-CVECTOR_CREATOR_TESTS = $(MAIN_TESTS_DIR)/test_creators
-CVECTOR_ACCESSORS_TESTS = $(MAIN_TESTS_DIR)/test_accessors
-CVECTOR_MODIFIERS_TESTS = $(MAIN_TESTS_DIR)/test_modifiers
-CVECTOR_CAPACITY_TESTS = $(MAIN_TESTS_DIR)/test_capacity
+CVECTOR_TEST_DIRS = $(MAIN_TESTS_DIR)/test_cvector
 
-CVECTOR_ALL_TESTS_DIRS = $(CVECTOR_CREATOR_TESTS) $(CVECTOR_ACCESSORS_TESTS) $(CVECTOR_MODIFIERS_TESTS) $(CVECTOR_CAPACITY_TESTS)
-
-CVECTOR_TEST_SRC = $(foreach dir, $(CVECTOR_ALL_TESTS_DIRS), $(wildcard $(dir)/*.c)) $(MAIN_TESTS_DIR)/test_cvector_main.c
+CVECTOR_TEST_SRC = $(foreach dir, $(CVECTOR_TEST_DIRS), $(wildcard $(dir)/*.c))
+CVECTOR_TEST_SRC += $(MAIN_TESTS_DIR)/test_cvector_main.c
 CVECTOR_TEST_OBJ = $(CVECTOR_TEST_SRC:.c=.o)
 CVECTOR_TEST_NAME = cvector_test
 
@@ -61,9 +57,10 @@ $(CVECTOR_TEST_NAME): LDFLAGS = $(shell pkg-config --libs cmocka)
 $(CVECTOR_TEST_NAME): $(CVECTOR_TEST_OBJ) $(OBJ)
 	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
-# $(MAIN_TESTS_DIR)/test_cvectorm_struct_1
-CVECTORM_TEST_DIR = $(MAIN_TESTS_DIR)/test_cvectorm_int $(MAIN_TESTS_DIR)/test_cvectorm_struct_1
-CVECTORM_TEST_SRC = $(foreach dir, $(CVECTORM_TEST_DIR), $(wildcard $(dir)/*.c)) $(MAIN_TESTS_DIR)/test_cvectorm_int_main.c
+
+CVECTORM_TEST_DIRS = $(MAIN_TESTS_DIR)/test_cvectorm_int $(MAIN_TESTS_DIR)/test_cvectorm_struct_1
+CVECTORM_TEST_SRC = $(foreach dir, $(CVECTORM_TEST_DIRS), $(wildcard $(dir)/*.c))
+CVECTORM_TEST_SRC += $(MAIN_TESTS_DIR)/test_cvectorm_int_main.c
 CVECTORM_TEST_OBJ = $(CVECTORM_TEST_SRC:.c=.o)
 CVECTORM_TEST_NAME = cvector_macros_test
 
