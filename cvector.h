@@ -14,15 +14,13 @@
 
 #include <stddef.h>
 #include <stdbool.h>
-// TODO: target for makefile: static and shared libs
 
-/*
- * @mainpage
+/** @mainpage
  * - cvector struct is fully open for user, be carefully while directly change it
  * - By design user may access only @Main functions. @Add-on funcs also acceptable, but not recomended
  * - FuncDesign:
  *      - Some func return common status-code (true, false). Some result of it work
- *      - In every unexpected situation 'false' will returns. It may be real error (can't allocate memory), or wrong argument passed, or anything else
+ *      - In every unexpected situation 'false' will returns. It may be real error (can't allocate memory), or wrong argument passed, or any other error
  *      - All func have prefix cvector_*
  */
 
